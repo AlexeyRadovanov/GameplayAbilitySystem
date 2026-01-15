@@ -3,6 +3,11 @@ public class AbilityInstance
     public AbilityData Data;
     private float cooldownTimer;
 
+    public AbilityInstance(AbilityData data)
+    {
+        Data = data;
+    }
+
     public void Activate(AbilityContext context)
     {
         cooldownTimer = Data.cooldown;
@@ -13,9 +18,14 @@ public class AbilityInstance
         }
     }
 
-    public bool CanActivate(ResourceSystem resources)
+    public bool CanActivate(PlayerStats stats)
     {
-        return cooldownTimer <= 0 && resources.HasEnough(Data.cost);
+        return cooldownTimer <= 0 && stats.HasEnough(Data.cooldown);
     }
 
+    public void Tick(float deltaTime)
+    {
+        if (cooldownTimer > 0f)
+            cooldownTimer -= deltaTime;
+    }
 }
