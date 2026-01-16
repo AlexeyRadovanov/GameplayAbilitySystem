@@ -54,7 +54,7 @@ SphereCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
@@ -70,6 +70,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d98e017717e6da246b8e4ebb4dd455bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
+  startHealth: 100
+  startEnergy: 100
+  startEnergyRegenerationRate: 2
+  startSpeed: 8
 --- !u!114 &5210553280960670591
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -94,7 +98,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a10b29d5489f99a4185e252c2ee9f41b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AbilityManager
-  abilityDatas: []
+  abilityDatas:
+  - {fileID: 11400000, guid: 141227bc5c572f748a5e9cb52820344e, type: 2}
 --- !u!1 &4796311085104093928
 GameObject:
   m_ObjectHideFlags: 0
@@ -162,7 +167,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 338dbb4feb5d9374991eda0510b8323e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -266,13 +271,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7738974477233004337}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.23911765, y: 0.3696438, z: -0.09904577, w: 0.89239913}
-  m_LocalPosition: {x: -5, y: 6, z: -5}
+  m_LocalRotation: {x: 0.42261827, y: 0, z: 0, w: 0.9063079}
+  m_LocalPosition: {x: 0, y: 7, z: -6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8040061155762929037}
-  m_LocalEulerAnglesHint: {x: 30, y: 45, z: 0}
+  m_LocalEulerAnglesHint: {x: 50, y: 0, z: 0}
 --- !u!20 &8769579579012441657
 Camera:
   m_ObjectHideFlags: 0

@@ -15,5 +15,5 @@ MonoBehaviour:
   abilityName: PlasmaShot
   cooldown: 2.5
   cost: 10
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 4278ac7b9e46407479c40430e7ea6ef4, type: 3}
   effects: []

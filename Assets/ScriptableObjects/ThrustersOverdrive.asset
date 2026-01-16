@@ -15,5 +15,5 @@ MonoBehaviour:
   abilityName: ThrustersOverdrive
   cooldown: 2
   cost: 1
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: e10c3f9a2dbe0cc4d8a43375351ba4fe, type: 3}
   effects: []

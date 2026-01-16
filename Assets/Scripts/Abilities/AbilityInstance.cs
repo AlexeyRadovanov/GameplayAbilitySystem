@@ -1,7 +1,7 @@
 public class AbilityInstance
 {
     public AbilityData Data;
-    private float cooldownTimer;
+    public float cooldownTimer;
 
     public AbilityInstance(AbilityData data)
     {

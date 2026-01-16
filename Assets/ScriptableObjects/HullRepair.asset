@@ -15,5 +15,5 @@ MonoBehaviour:
   abilityName: HullRepair
   cooldown: 5
   cost: 10
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 6c45cc7a27a7e704abe59342b4b9af23, type: 3}
   effects: []

@@ -15,5 +15,5 @@ MonoBehaviour:
   abilityName: EnergyShield
   cooldown: 2
   cost: 7
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: c0709a64a61fac44fb10f03f84fcbca1, type: 3}
   effects: []
