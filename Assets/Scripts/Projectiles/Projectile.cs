@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// Projectile is a delivery object for effects
+// It does decide what happens on hit
 public class Projectile : MonoBehaviour
 {
     private float lifetime;

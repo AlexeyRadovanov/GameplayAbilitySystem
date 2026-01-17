@@ -2,6 +2,8 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using System.Collections;
 
+// Entry point for gameplay interactions affecting the player
+// Doesn't store gameplay state
 public class PlayerController : MonoBehaviour, IDamageable
 {
     [SerializeField] private float startHealth;

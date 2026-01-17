@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Creates and manages runtime ability instances from ScriptableObject
+// Responsible for check and activation abilities
 public class AbilityManager : MonoBehaviour
 {
     [SerializeField] private List<AbilityData> abilityDatas;

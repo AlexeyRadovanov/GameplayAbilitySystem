@@ -1,5 +1,7 @@
 using UnityEngine;
 
+// Runtime data of abilities passed through execution pipeline
+// Context is immutable: use WithTarget method to derive new versions
 public class AbilityContext
 {
     public Transform Caster { get; }

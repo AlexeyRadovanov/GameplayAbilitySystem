@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// EntryPoint specifies the order of initialization of systems
 public class GameplayEntryPoint : MonoBehaviour
 {
     [SerializeField] private PlayerController player;
