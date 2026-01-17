@@ -8,7 +8,9 @@ public class PlayerStats
     public float Energy;
     public float EnergyMax;
     public float EnergyRegenerationRate;
-    public float Speed;
+    public float BaseSpeed;
+    public float SpeedModifier = 1f;
+    public float Speed => BaseSpeed * SpeedModifier;
 
     public event Action<float, float> OnEnergyChanged;
     public event Action<float, float> OnHealthChanged;
@@ -21,7 +23,7 @@ public class PlayerStats
         Energy = energy;
         EnergyMax = energy;
         EnergyRegenerationRate = energyRegenerationRate;
-        Speed = speed;
+        BaseSpeed = speed;
     }
 
     public bool HasEnough(float cost)
@@ -36,6 +38,13 @@ public class PlayerStats
         OnEnergyChanged?.Invoke(Energy, EnergyMax);
     }
 
+    public void UpdateEnergy(float deltaTime)
+    {
+        Energy = Mathf.Min(EnergyMax, Energy + EnergyRegenerationRate * deltaTime);
+
+        OnEnergyChanged?.Invoke(Energy, EnergyMax);
+    }
+
     public void TakeDamage(float damage)
     {
         Health -= damage;
@@ -46,5 +55,17 @@ public class PlayerStats
             OnDied?.Invoke();
             return;
         }
+    }
+
+    public void Heal(float amount)
+    {
+        Health = Math.Min(Health + amount, HealthMax);
+
+        OnHealthChanged?.Invoke(Health, HealthMax);
+    }
+
+    public void SetSpeedModifier(float modifier)
+    {
+        SpeedModifier = modifier;
     }
 }

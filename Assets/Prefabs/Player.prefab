@@ -72,7 +72,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
   startHealth: 100
   startEnergy: 100
-  startEnergyRegenerationRate: 2
+  startEnergyRegenerationRate: 5
   startSpeed: 8
 --- !u!114 &5210553280960670591
 MonoBehaviour:
@@ -100,6 +100,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AbilityManager
   abilityDatas:
   - {fileID: 11400000, guid: 141227bc5c572f748a5e9cb52820344e, type: 2}
+  - {fileID: 11400000, guid: 67b3e1af5dbaf944bb503cfaf7dd537d, type: 2}
+  - {fileID: 11400000, guid: 5d763d0dea721d840a7fd52ebe5ba1ac, type: 2}
+  - {fileID: 11400000, guid: 8d25b0c955c238c40b99f01a1fdd6a80, type: 2}
 --- !u!1 &4796311085104093928
 GameObject:
   m_ObjectHideFlags: 0

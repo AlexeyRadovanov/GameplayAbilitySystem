@@ -7,14 +7,16 @@ public class AbilityManager : MonoBehaviour
     [SerializeField] private List<AbilityData> abilityDatas;
 
     private List<AbilityInstance> abilities;
-    private PlayerStats stats;
+    private PlayerStats playerStats;
+    private PlayerController playerController;
     private bool isInitialized;
 
     public event Action<int> OnAbilityActivated;
 
-    public void Initialize(PlayerStats stats)
+    public void Initialize(PlayerController playerController)
     {
-        this.stats = stats;
+        this.playerStats = playerController.stats;
+        this.playerController = playerController;
 
         abilities = new List<AbilityInstance>();
         foreach (var data in abilityDatas)
@@ -43,18 +45,22 @@ public class AbilityManager : MonoBehaviour
 
         AbilityInstance ability = abilities[index];
 
-        if (!ability.CanActivate(stats))
+        if (!ability.CanActivate(playerStats))
             return;
 
-        if (!stats.HasEnough(ability.Data.cost))
+        if (!playerStats.HasEnough(ability.Data.cost))
             return;
 
-        stats.ConsumeEnergy(ability.Data.cost);
+        playerStats.ConsumeEnergy(ability.Data.cost);
 
-        AbilityContext context = new AbilityContext(this.transform, targetPosition, stats);
+        AbilityContext context = new AbilityContext(
+            this.transform,
+            playerStats,
+            playerController,
+            targetPosition);
         Debug.Log($"Ability count: {abilities.Count}");
         Debug.Log($"Cooldown remaining: {GetCooldownRemaining(index)}");
-        Debug.Log($"Energy: {stats.Energy}");
+        Debug.Log($"Energy: {playerStats.Energy}");
 
         ability.Activate(context);
 

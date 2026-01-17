@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: ThrustersOverdrive
   m_EditorClassIdentifier: Assembly-CSharp::AbilityData
   abilityName: ThrustersOverdrive
-  cooldown: 2
-  cost: 1
+  cooldown: 5
+  cost: 10
   icon: {fileID: 21300000, guid: e10c3f9a2dbe0cc4d8a43375351ba4fe, type: 3}
-  effects: []
+  effects:
+  - {fileID: 11400000, guid: f8467e7aaf544814d94e22a6ab4c674a, type: 2}

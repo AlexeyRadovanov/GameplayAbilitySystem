@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Spawn Projectile", menuName = "ScriptableObjects/Effects/Spawn Projectile")]
@@ -7,6 +8,7 @@ public class SpawnProjectileEffect : AbilityEffectData
     [SerializeField] private float damage;
     [SerializeField] private float speed;
     [SerializeField] private float lifetime;
+    [SerializeField] private List<AbilityEffectData> onHitEffects;
 
     public override void Apply(AbilityContext context)
     {
@@ -17,6 +19,6 @@ public class SpawnProjectileEffect : AbilityEffectData
         var projectile = projectileObject.GetComponent<Projectile>();
 
         ProjectileData projectileData = new (damage, speed, lifetime);
-        projectile.Initialize(projectileData, context);
+        projectile.Initialize(projectileData, context, onHitEffects);
     }
 }

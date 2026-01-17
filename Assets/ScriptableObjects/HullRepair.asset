@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AbilityData
   abilityName: HullRepair
   cooldown: 5
-  cost: 10
+  cost: 30
   icon: {fileID: 21300000, guid: 6c45cc7a27a7e704abe59342b4b9af23, type: 3}
-  effects: []
+  effects:
+  - {fileID: 11400000, guid: c4d79d7d326b5e84e8753631c215dd27, type: 2}

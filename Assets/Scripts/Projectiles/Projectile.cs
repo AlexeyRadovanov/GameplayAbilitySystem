@@ -1,14 +1,17 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    private float damage;
     private float lifetime;
+    private AbilityContext context;
+    private List<AbilityEffectData> onHitEffects;
 
-    public void Initialize(ProjectileData  projectileData, AbilityContext context)
+    public void Initialize(ProjectileData  projectileData, AbilityContext context, List<AbilityEffectData> onHitEffects)
     {
-        this.damage = projectileData.damage;
         this.lifetime = projectileData.lifetime;
+        this.context = context;
+        this.onHitEffects = onHitEffects;
 
         Rigidbody rb = this.GetComponent<Rigidbody>();
         Vector3 targetDirection = (context.TargetPosition - context.Caster.position).normalized;
@@ -17,11 +20,17 @@ public class Projectile : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.TryGetComponent<Enemy>(out var enemy))
+        if (!other.TryGetComponent<IDamageable>(out var target))
+            return;
+
+        AbilityContext hitContext = context.WithTarget(other.transform);
+
+        foreach (var effect in onHitEffects)
         {
-            enemy.TakeDamage(damage);
-            Destroy(this.gameObject);
+            effect.Apply(hitContext);
         }
+
+        Destroy(this.gameObject);
     }
 
     private void Update()

@@ -18,7 +18,7 @@ public class GameplayEntryPoint : MonoBehaviour
             enemy.Initialize();
         }
 
-        abilityManager.Initialize(player.stats);
+        abilityManager.Initialize(player);
         playerUI.Initialize(abilityManager, player);
     }
 }
