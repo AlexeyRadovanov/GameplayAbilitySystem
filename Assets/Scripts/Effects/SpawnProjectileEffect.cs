@@ -5,7 +5,6 @@ using UnityEngine;
 public class SpawnProjectileEffect : AbilityEffectData
 {
     [SerializeField] private GameObject prefab;
-    [SerializeField] private float damage;
     [SerializeField] private float speed;
     [SerializeField] private float lifetime;
     [SerializeField] private List<AbilityEffectData> onHitEffects;
@@ -18,7 +17,9 @@ public class SpawnProjectileEffect : AbilityEffectData
         GameObject projectileObject = Instantiate(prefab, context.Caster.position, targetRotation);
         var projectile = projectileObject.GetComponent<Projectile>();
 
-        ProjectileData projectileData = new (damage, speed, lifetime);
+        ProjectileData projectileData = new (speed, lifetime);
         projectile.Initialize(projectileData, context, onHitEffects);
+
+        Debug.DrawRay(context.Caster.position, targetDirection * speed * lifetime, Color.cyan, lifetime);
     }
 }

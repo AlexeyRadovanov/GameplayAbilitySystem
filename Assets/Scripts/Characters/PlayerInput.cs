@@ -12,10 +12,10 @@ public class PlayerInput : MonoBehaviour
     private void Awake()
     {
         abilityManager = GetComponent<AbilityManager>();
-        if (abilityManager == null) Debug.LogError("Ability Manager not found");
+        if (abilityManager == null) GameDebug.Log("Ability Manager not found", this);
 
         playerController = GetComponent<PlayerController>();
-        if (playerController == null) Debug.LogError("Player Controller not found");
+        if (playerController == null) GameDebug.Log("Player Controller not found", this);
 
         input = new PlayerInputActions();
     }

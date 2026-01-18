@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 277809567900945482}
   - component: {fileID: 5210553280960670591}
   - component: {fileID: 6989561314687790927}
+  - component: {fileID: 3551933087662231003}
+  - component: {fileID: 4796199723323401246}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -103,6 +105,32 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 67b3e1af5dbaf944bb503cfaf7dd537d, type: 2}
   - {fileID: 11400000, guid: 5d763d0dea721d840a7fd52ebe5ba1ac, type: 2}
   - {fileID: 11400000, guid: 8d25b0c955c238c40b99f01a1fdd6a80, type: 2}
+--- !u!114 &3551933087662231003
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4509018095456269752}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3df139757e523446b07b7e90ac0062d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AbilityGizmoVisualizer
+  range: 10
+  color: {r: 1, g: 0.8735534, b: 0, a: 0}
+--- !u!114 &4796199723323401246
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4509018095456269752}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 078d35cb5d67c2d488dd0e99705f33b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerDebugUI
 --- !u!1 &4796311085104093928
 GameObject:
   m_ObjectHideFlags: 0

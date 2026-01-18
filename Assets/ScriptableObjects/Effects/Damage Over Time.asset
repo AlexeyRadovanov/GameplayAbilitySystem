@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08758e0b4544f054cb7c48145e499f44, type: 3}
   m_Name: Damage Over Time
   m_EditorClassIdentifier: Assembly-CSharp::DamageOverTimeEffect
-  tickDamage: 5
-  duration: 7
-  tickInterval: 1
+  amount: 5
+  duration: 5
+  tickInterval: 0.7

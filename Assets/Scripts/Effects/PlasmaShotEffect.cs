@@ -10,14 +10,16 @@ public class PlasmaShotEffect : AbilityEffectData
 
     public override void Apply(AbilityContext context)
     {
+        Vector3 targetDirection = (context.TargetPosition - context.Caster.position).normalized;
+
         if (Physics.Raycast(
             context.Caster.position,
-            context.Caster.forward,
+            targetDirection,
             out RaycastHit hit,
             range,
             hitMask))
         {
-            Debug.Log("hit - " + hit.collider.transform.name + ", range = " + hit.distance);
+            GameDebug.Log("hit - " + hit.collider.transform.name + ", range = " + hit.distance, this);
             var target = hit.transform;
             var hitContext = context.WithTarget(target);
 
@@ -26,6 +28,9 @@ public class PlasmaShotEffect : AbilityEffectData
                 effect.Apply(hitContext);
             }
         }
-        else Debug.Log("Missing fire");
+        else GameDebug.Log("Missing fire", this);
+
+        Debug.DrawRay(context.Caster.position, targetDirection * range, Color.yellow, 0.5f);
+
     }
 }

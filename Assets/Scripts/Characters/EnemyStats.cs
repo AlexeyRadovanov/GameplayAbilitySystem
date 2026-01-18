@@ -14,9 +14,9 @@ public class EnemyStats
         HealthMax = health;
     }
 
-    public void TakeDamage(float damage)
+    public void ApplyDamage(float amount)
     {
-        Health -= damage;
+        Health -= amount;
         OnHealthChanged?.Invoke(Health, HealthMax);
 
         if (Health <= 0)
@@ -24,5 +24,12 @@ public class EnemyStats
             OnDied?.Invoke();
             return;
         }
+    }
+
+    public void ApplyHeal(float amount)
+    {
+        Health = Math.Min(Health + amount, HealthMax);
+
+        OnHealthChanged?.Invoke(Health, HealthMax);
     }
 }

@@ -45,9 +45,9 @@ public class PlayerStats
         OnEnergyChanged?.Invoke(Energy, EnergyMax);
     }
 
-    public void TakeDamage(float damage)
+    public void TakeDamage(float amount)
     {
-        Health -= damage;
+        Health -= amount;
         OnHealthChanged?.Invoke(Health, HealthMax);
 
         if (Health <= 0)

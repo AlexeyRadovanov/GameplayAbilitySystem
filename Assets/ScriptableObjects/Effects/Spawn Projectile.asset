@@ -13,8 +13,7 @@ MonoBehaviour:
   m_Name: Spawn Projectile
   m_EditorClassIdentifier: Assembly-CSharp::SpawnProjectileEffect
   prefab: {fileID: 6838816480931211792, guid: a5f99579e74566f4cbce4c8c183c7db1, type: 3}
-  damage: 10
-  speed: 10
-  lifetime: 3
+  speed: 15
+  lifetime: 1
   onHitEffects:
   - {fileID: 11400000, guid: a2ab4654ea694a347bbe10d9a1da002a, type: 2}

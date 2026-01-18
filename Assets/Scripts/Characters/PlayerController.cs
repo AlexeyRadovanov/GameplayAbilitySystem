@@ -4,12 +4,13 @@ using System.Collections;
 
 // Entry point for gameplay interactions affecting the player
 // Doesn't store gameplay state
-public class PlayerController : MonoBehaviour, IDamageable
+public class PlayerController : MonoBehaviour, IHealth
 {
     [SerializeField] private float startHealth;
     [SerializeField] private float startEnergy;
     [SerializeField] private float startEnergyRegenerationRate;
     [SerializeField] private float startSpeed;
+    [SerializeField] private PlayerDebugUI playerDebugUI;
 
     private AbilityManager abilityManager;
     public PlayerStats stats;
@@ -18,9 +19,10 @@ public class PlayerController : MonoBehaviour, IDamageable
     public void Initialize()
     {
         stats = new PlayerStats(startHealth, startEnergy, startEnergyRegenerationRate, startSpeed);
+        playerDebugUI.Initialize(stats);
 
         abilityManager = GetComponent<AbilityManager>();
-        if (abilityManager == null )  Debug.LogError("Ability Manager not found");
+        if (abilityManager == null )  GameDebug.Log("Ability Manager not found", this);
     }
     void Update()
     {
@@ -47,11 +49,6 @@ public class PlayerController : MonoBehaviour, IDamageable
         transform.position += move * stats.Speed * Time.deltaTime;
     }
 
-    public void TakeDamage(float amount)
-    {
-        stats.TakeDamage(amount);
-    }
-
     public void ApplySpeedModifier(float modifier, float duration)
     {
         StartCoroutine(SpeedModifierRoutine(modifier, duration));
@@ -64,23 +61,52 @@ public class PlayerController : MonoBehaviour, IDamageable
         stats.SetSpeedModifier(1f);
     }
 
-    public void ApplyDamageOverTime(float tickDamage, float duration, float tickInterval)
+    public void ApplyDamage(float amount)
+    {
+        stats.TakeDamage(amount);
+
+        FloatingTextSpawner.Instance?.Spawn(
+            $"-{amount}",
+            Color.red,
+            this.transform.position
+        );
+    }
+
+    public void ApplyDamageOverTime(float amount, float duration, float tickInterval)
     {
         if (DamageOverTimeCoroutine != null)
             StopCoroutine(DamageOverTimeCoroutine);
 
-        DamageOverTimeCoroutine = StartCoroutine(DamageOverTimeRoutine(tickDamage, duration, tickInterval));
+        DamageOverTimeCoroutine = StartCoroutine(DamageOverTimeRoutine(amount, duration, tickInterval));
     }
 
-    private IEnumerator DamageOverTimeRoutine(float tickDamage, float duration, float tickInterval)
+    private IEnumerator DamageOverTimeRoutine(float amount, float duration, float tickInterval)
     {
         float elapsedTime = 0f;
 
         while (elapsedTime < duration)
         {
-            stats.TakeDamage(tickDamage);
+            stats.TakeDamage(amount);
+
+            FloatingTextSpawner.Instance?.Spawn(
+                $"-{amount}",
+                Color.red,
+                this.transform.position
+            );
+
             yield return new WaitForSeconds(tickInterval);
             elapsedTime += tickInterval;
         }
+    }
+
+    public void ApplyHeal(float amount)
+    {
+        stats.Heal(amount);
+
+        FloatingTextSpawner.Instance?.Spawn(
+            $"+{amount}",
+            Color.green,
+            this.transform.position
+        );
     }
 }

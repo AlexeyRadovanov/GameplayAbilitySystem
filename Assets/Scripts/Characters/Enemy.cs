@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class Enemy : MonoBehaviour, IDamageable
+public class Enemy : MonoBehaviour, IHealth
 {
     [SerializeField] private float startHealth;
     [SerializeField] private EnemyUI enemyUI;
@@ -21,28 +21,52 @@ public class Enemy : MonoBehaviour, IDamageable
         Destroy(this.gameObject);
     }
 
-    public void TakeDamage(float amount)
+    public void ApplyDamage(float amount)
     {
-        stats.TakeDamage(amount);
+        stats.ApplyDamage(amount);
+
+        FloatingTextSpawner.Instance?.Spawn(
+            $"-{amount}",
+            Color.red,
+            this.transform.position
+        );
     }
 
-    public void ApplyDamageOverTime(float tickDamage, float duration, float tickInterval)
+    public void ApplyDamageOverTime(float amount, float duration, float tickInterval)
     {
         if (DamageOverTimeCoroutine != null)
             StopCoroutine(DamageOverTimeCoroutine);
 
-        DamageOverTimeCoroutine = StartCoroutine(DamageOverTimeRoutine(tickDamage, duration, tickInterval));
+        DamageOverTimeCoroutine = StartCoroutine(DamageOverTimeRoutine(amount, duration, tickInterval));
     }
 
-    private IEnumerator DamageOverTimeRoutine(float tickDamage, float duration, float tickInterval)
+    private IEnumerator DamageOverTimeRoutine(float amount, float duration, float tickInterval)
     {
         float elapsedTime = 0f;
 
         while (elapsedTime < duration)
         {
-            stats.TakeDamage(tickDamage);
+            stats.ApplyDamage(amount);
+
+            FloatingTextSpawner.Instance?.Spawn(
+                $"-{amount}",
+                Color.red,
+                this.transform.position
+            );
+
             yield return new WaitForSeconds(tickInterval);
             elapsedTime += tickInterval;
         }
+    }
+
+    public void ApplyHeal(float amount)
+    {
+        stats.ApplyHeal(amount);
+
+        FloatingTextSpawner.Instance?.Spawn(
+            $"+{amount}",
+            Color.green,
+            this.transform.position
+        );
     }
 }

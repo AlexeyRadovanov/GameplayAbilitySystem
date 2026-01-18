@@ -18,11 +18,13 @@ public class Projectile : MonoBehaviour
         Rigidbody rb = this.GetComponent<Rigidbody>();
         Vector3 targetDirection = (context.TargetPosition - context.Caster.position).normalized;
         rb.linearVelocity = targetDirection * projectileData.speed;
+
+        transform.rotation = Quaternion.LookRotation(targetDirection);
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!other.TryGetComponent<IDamageable>(out var target))
+        if (!other.TryGetComponent<IHealth>(out var target))
             return;
 
         AbilityContext hitContext = context.WithTarget(other.transform);

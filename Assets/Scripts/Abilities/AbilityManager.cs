@@ -31,17 +31,17 @@ public class AbilityManager : MonoBehaviour
 
     public void TryActivate(int index, Vector3 targetPosition)
     {
-        Debug.Log($"TryActivate called with index {index}");
+        GameDebug.Log($"TryActivate called with index {index}", this);
 
         if (!isInitialized)
         {
-            Debug.LogError("AbilityManager is not initialized");
+            GameDebug.Log("AbilityManager is not initialized", this);
             return;
         }
 
         if (index < 0 || index >= abilities.Count)
         {
-            Debug.LogError($"Invalid ability index {index}");
+            GameDebug.Log($"Invalid ability index {index}", this);
             return;
         }
 
@@ -60,9 +60,10 @@ public class AbilityManager : MonoBehaviour
             playerStats,
             playerController,
             targetPosition);
-        Debug.Log($"Ability count: {abilities.Count}");
-        Debug.Log($"Cooldown remaining: {GetCooldownRemaining(index)}");
-        Debug.Log($"Energy: {playerStats.Energy}");
+
+        GameDebug.Log($"Ability count: {abilities.Count}", this);
+        GameDebug.Log($"Cooldown remaining: {GetCooldownRemaining(index)}", this);
+        GameDebug.Log($"Energy: {playerStats.Energy}", this);
 
         ability.Activate(context);
 
@@ -86,7 +87,7 @@ public class AbilityManager : MonoBehaviour
     {
         if (!isInitialized)
         {
-            Debug.LogError("AbilityManager is not initialized");
+            GameDebug.Log("AbilityManager is not initialized", this);
             return 0f;
         }
 
@@ -97,7 +98,7 @@ public class AbilityManager : MonoBehaviour
     {
         if (!isInitialized)
         {
-            Debug.LogError("AbilityManager is not initialized");
+            GameDebug.Log("AbilityManager is not initialized", this);
             return 0f;
         }
 
@@ -108,7 +109,7 @@ public class AbilityManager : MonoBehaviour
     {
         if (!isInitialized)
         {
-            Debug.LogError("AbilityManager is not initialized");
+            GameDebug.Log("AbilityManager is not initialized", this);
             return null;
         }
 
